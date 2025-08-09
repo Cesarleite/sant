@@ -1,0 +1,750 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Importação do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Variáveis customizadas para Santiago */
+  --santiago-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --santiago-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --santiago-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* ========================================
+   ESTILOS PERSONALIZADOS SANTIAGO
+   ======================================== */
+
+@layer components {
+  /* Header Principal */
+  .santiago-main-header {
+    @apply text-center mb-8;
+  }
+  
+  .santiago-main-title {
+    @apply text-4xl font-bold text-gray-800 mb-2;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #1e40af, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .santiago-subtitle {
+    @apply text-gray-600;
+  }
+  
+  /* Cards aprimorados */
+  .santiago-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: var(--santiago-shadow);
+    transition: var(--santiago-transition);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .santiago-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .santiago-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+  }
+  
+  /* Etapas do roteiro */
+  .etapa-santiago {
+    @apply border-l-4 border-l-green-500 mb-4;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .etapa-santiago:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+  }
+  
+  .etapa-santiago::before {
+    content: '🚶‍♂️';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    opacity: 0.3;
+  }
+  
+  /* Badges personalizados */
+  .badge-distancia {
+    background: linear-gradient(135deg, #10b981, #059669);
+    @apply text-white px-3 py-1 rounded-full text-sm font-medium inline-block;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+  
+  /* Seções espirituais */
+  .secao-biblica {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-left: 4px solid #3b82f6;
+    @apply p-5 rounded-lg mb-4;
+  }
+  
+  .secao-druidica {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-left: 4px solid #10b981;
+    @apply p-5 rounded-lg mb-4;
+  }
+  
+  .secao-milagres {
+    background: linear-gradient(135deg, #fae8ff 0%, #e9d5ff 100%);
+    border-left: 4px solid #8b5cf6;
+    @apply p-5 rounded-lg mb-4;
+  }
+  
+  .secao-reflexao {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid #f59e0b;
+    @apply p-5 rounded-lg mb-4;
+  }
+  
+  .secao-pratica {
+    background: linear-gradient(135deg, #fce7f3 0%, #fbb6ce 100%);
+    border-left: 4px solid #ec4899;
+    @apply p-5 rounded-lg mb-4;
+  }
+  
+  /* Checkbox personalizado */
+  .checkbox-santiago {
+    @apply w-6 h-6 border-2 border-gray-300 rounded-md flex items-center justify-center cursor-pointer;
+    transition: all 0.2s ease;
+    background: white;
+  }
+  
+  .checkbox-santiago:hover {
+    @apply border-green-400;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+  
+  .checkbox-santiago.checked {
+    background: linear-gradient(135deg, #10b981, #059669);
+    @apply border-green-500 text-white;
+  }
+  
+  /* Progress bar personalizada */
+  .progress-santiago {
+    @apply bg-gray-200 rounded-full h-2 overflow-hidden;
+  }
+  
+  .progress-fill-santiago {
+    background: linear-gradient(90deg, #10b981, #059669);
+    @apply h-full transition-all duration-500 rounded-full;
+  }
+  
+  /* Stats cards */
+  .stat-card-santiago {
+    @apply text-center p-6 rounded-lg border transition-all duration-300;
+  }
+  
+  .stat-card-santiago:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-number {
+    @apply text-3xl font-bold mb-2;
+    font-family: 'Playfair Display', serif;
+    color: #1f2937;
+  }
+  
+  .stat-label {
+    @apply text-sm text-gray-600 font-medium uppercase tracking-wide;
+  }
+  
+  /* Alerta informativo */
+  .alert-santiago {
+    @apply p-4 rounded-lg border-l-4 mb-4;
+  }
+  
+  .alert-info {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-left-color: #3b82f6;
+    @apply text-blue-800;
+  }
+  
+  .alert-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-left-color: #10b981;
+    @apply text-green-800;
+  }
+  
+  .alert-warning {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left-color: #f59e0b;
+    @apply text-amber-800;
+  }
+  
+  /* Animações */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+}
+
+/* ========================================
+   KEYFRAMES DAS ANIMAÇÕES
+   ======================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.1); 
+  }
+}
+
+/* ========================================
+   RESPONSIVE UTILITIES
+   ======================================== */
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+  
+  .shadow-santiago {
+    box-shadow: var(--santiago-shadow);
+  }
+  
+  .transition-santiago {
+    transition: var(--santiago-transition);
+  }
+}
+
+/* ========================================
+   MEDIA QUERIES RESPONSIVAS
+   ======================================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .santiago-main-title {
+    @apply text-3xl;
+  }
+  
+  .etapa-santiago {
+    padding: 1rem;
+  }
+  
+  .etapa-santiago::before {
+    top: 10px;
+    right: 10px;
+    font-size: 1.25rem;
+  }
+  
+  .santiago-card {
+    margin: 0 0.5rem;
+    border-radius: 16px;
+  }
+  
+  .secao-biblica,
+  .secao-druidica,
+  .secao-milagres,
+  .secao-reflexao,
+  .secao-pratica {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-card-santiago {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    @apply text-2xl;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .santiago-main-title {
+    @apply text-2xl;
+  }
+  
+  .santiago-card {
+    margin: 0 0.25rem;
+    border-radius: 12px;
+  }
+  
+  .etapa-santiago {
+    padding: 0.75rem;
+  }
+  
+  .secao-biblica,
+  .secao-druidica,
+  .secao-milagres,
+  .secao-reflexao,
+  .secao-pratica {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .stat-card-santiago {
+    padding: 0.75rem;
+  }
+  
+  .stat-number {
+    @apply text-xl;
+  }
+  
+  .checkbox-santiago {
+    @apply w-5 h-5;
+  }
+}
+
+/* ========================================
+   DARK MODE ENHANCEMENTS
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .santiago-card {
+    background: rgba(17, 24, 39, 0.95);
+    color: #f9fafb;
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+  
+  .etapa-santiago {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    color: #f9fafb;
+    border-color: #374151;
+  }
+  
+  .secao-biblica {
+    background: linear-gradient(135deg, #1e3a8a 20%, #1e40af 100%);
+    color: #dbeafe;
+  }
+  
+  .secao-druidica {
+    background: linear-gradient(135deg, #047857 20%, #059669 100%);
+    color: #d1fae5;
+  }
+  
+  .secao-milagres {
+    background: linear-gradient(135deg, #6b21a8 20%, #7c3aed 100%);
+    color: #fae8ff;
+  }
+  
+  .secao-reflexao {
+    background: linear-gradient(135deg, #92400e 20%, #d97706 100%);
+    color: #fef3c7;
+  }
+  
+  .secao-pratica {
+    background: linear-gradient(135deg, #be185d 20%, #e91e63 100%);
+    color: #fce7f3;
+  }
+  
+  .checkbox-santiago {
+    background: #374151;
+    border-color: #6b7280;
+  }
+  
+  .checkbox-santiago:hover {
+    border-color: #10b981;
+  }
+  
+  .stat-card-santiago {
+    background: rgba(17, 24, 39, 0.8);
+    color: #f9fafb;
+    border-color: #374151;
+  }
+  
+  .stat-number {
+    color: #f9fafb;
+  }
+  
+  .stat-label {
+    color: #9ca3af;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  body {
+    background: white !important;
+  }
+  
+  .santiago-card,
+  .etapa-santiago {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  
+  .secao-biblica,
+  .secao-druidica,
+  .secao-milagres,
+  .secao-reflexao,
+  .secao-pratica {
+    background: #f9fafb !important;
+    border: 1px solid #d1d5db !important;
+    break-inside: avoid;
+  }
+  
+  .santiago-main-title {
+    color: #000 !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+  }
+  
+  .text-gradient {
+    color: #000 !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+  }
+  
+  .checkbox-santiago,
+  button {
+    display: none !important;
+  }
+  
+  .stat-card-santiago {
+    background: #f9fafb !important;
+    border: 1px solid #d1d5db !important;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .santiago-card {
+    border: 2px solid #000;
+    background: #fff;
+  }
+  
+  .etapa-santiago {
+    border: 2px solid #000;
+    background: #fff;
+  }
+  
+  .checkbox-santiago {
+    border: 2px solid #000;
+  }
+  
+  .checkbox-santiago.checked {
+    background: #000;
+    color: #fff;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for better accessibility */
+*:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.checkbox-santiago:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+button:focus,
+input:focus,
+select:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+.skeleton-santiago {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.loading-spinner-santiago {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+   ======================================== */
+
+/* Webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 rgba(0, 0, 0, 0.1);
+}
