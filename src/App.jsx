@@ -242,7 +242,7 @@
     const [customItem, setCustomItem] = useState('');
     const [customCategory, setCustomCategory] = useState('Outros');
 
-    const categorias = ['Documentos', 'Roupas', 'Calçados', 'Medicamentos', 'Equipamentos', 'Verificar em Portugal', 'Outros'];
+    const categorias = ['Documentos', 'Roupas', 'Calçados', 'Medicamentos', 'Equipamentos', 'Higiene Pessoal', 'Verificar em Portugal', 'Outros'];
 
     const addCustomItem = () => {
       if (customItem.trim()) {
