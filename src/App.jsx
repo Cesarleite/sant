@@ -236,6 +236,7 @@
       { id: 27, item: 'Chip de celular local', categoria: 'Verificar em Portugal', checked: false, essencial: false },
       { id: 28, item: 'Comida para trilha', categoria: 'Verificar em Portugal', checked: false, essencial: false },
       { id: 29, item: 'Par de luvas leves', categoria: 'Roupas', checked: false, essencial: false },
+      { id: 30, item: 'Sabonete', categoria: 'Higiene Pessoal', checked: false, essencial: true },
     ]);
 
     const [customItem, setCustomItem] = useState('');
