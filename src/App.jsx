@@ -206,7 +206,7 @@
     ];
 
     const [checklist, setChecklist] = useState([
-      { id: 1, item: 'Minancura', categoria: 'Medicamentos', checked: false, essencial: true },
+      { id: 1, item: 'Minancura ou pomada para o dia', categoria: 'Medicamentos', checked: false, essencial: true },
       { id: 2, item: 'Talco antisséptico', categoria: 'Medicamentos', checked: false, essencial: true },
       { id: 3, item: 'Passaporte', categoria: 'Documentos', checked: false, essencial: true },
       { id: 4, item: 'Credencial do Peregrino', categoria: 'Documentos', checked: false, essencial: true },
@@ -236,7 +236,30 @@
       { id: 27, item: 'Chip de celular local', categoria: 'Verificar em Portugal', checked: false, essencial: false },
       { id: 28, item: 'Comida para trilha', categoria: 'Verificar em Portugal', checked: false, essencial: false },
       { id: 29, item: 'Par de luvas leves', categoria: 'Roupas', checked: false, essencial: false },
-      { id: 30, item: 'Sabonete', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 30, item: 'Sabonete', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 31, item: 'Shampoo', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 32, item: 'Escova de dente', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 33, item: 'Creme Dental', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 34, item: 'Fio Dental', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 35, item: 'Desodorante pequeno', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 36, item: 'Protetor solar', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 37, item: 'Protetor labial', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 38, item: 'Papel higienico ou lenço umedecido', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 39, item: 'Toalha de secagem rápida', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 40, item: 'Pente ou escova de cabelo', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 41, item: 'Hidratante para pés e corpo', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 42, item: 'Fio Dental', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 43, item: 'Fone de ouvidos', categoria: 'Equipamentos', checked: false, essencial: false },
+      { id: 44, item: 'Power bank ou placa solar leve', categoria: 'Equipamento', checked: false, essencial: false },
+      { id: 45, item: 'Fita adesiva esportiva ou esparadrapo', categoria: 'Higiene Pessoal', checked: false, essencial: false },
+      { id: 46, item: 'Repelente de insetos', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 47, item: 'Gel ou pomada para dores musculares', categoria: 'Higiene Pessoal', checked: false, essencial: true },
+      { id: 48, item: 'Sacos estanques ou ziploc', categoria: 'Outros', checked: false, essencial: false },
+      { id: 49, item: 'Corda ou elastico para pendurar a roupas para secar', categoria: 'Outros', checked: false, essencial: false },
+      { id: 50, item: 'grampos ou alfinetes para pendurar roupas na mochila', categoria: 'Outros', checked: false, essencial: false },      
+      { id: 51, item: 'Tampão de ouvido para a noite', categoria: 'Outros', checked: false, essencial: false },      
+      { id: 52, item: 'Mascara de dormir', categoria: 'Outros', checked: false, essencial: false },      
+      { id: 53, item: 'Tampão de ouvido para a noite', categoria: 'Outros', checked: false, essencial: false },      
     ]);
 
     const [customItem, setCustomItem] = useState('');
