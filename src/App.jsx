@@ -415,59 +415,163 @@ const reservasHoteis = [
 
 // Lista completa de checklist
 const checklistCompleta = [
-  { id: 1, item: 'Minancura ou pomada para o dia', categoria: 'Medicamentos', checked: false, essencial: true },
-  { id: 2, item: 'Talco antisséptico', categoria: 'Medicamentos', checked: false, essencial: true },
-  { id: 3, item: 'Passaporte', categoria: 'Documentos', checked: false, essencial: true },
-  { id: 4, item: 'Credencial do Peregrino', categoria: 'Documentos', checked: false, essencial: true },
-  { id: 5, item: 'Cartão de crédito internacional', categoria: 'Documentos', checked: false, essencial: true },
-  { id: 6, item: 'Euros em espécie', categoria: 'Documentos', checked: false, essencial: true },
-  { id: 7, item: 'Seguro viagem', categoria: 'Documentos', checked: false, essencial: true },
-  { id: 8, item: 'Botas de caminhada (já amaciadas)', categoria: 'Calçados', checked: false, essencial: true },
-  { id: 9, item: 'Sandálias para descanso', categoria: 'Calçados', checked: false, essencial: true },
-  { id: 10, item: 'Meias de caminhada (3 pares)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 11, item: 'Camisetas dry-poliester ou fit (2 a 4 unidades)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 12, item: 'Camiseta de manga longa (1 unidade)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 13, item: 'Calças de caminhada (2 unidades)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 14, item: 'Jaqueta corta vento e impermeável (1 unidade)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 15, item: 'Boné ou chapéu para proteção solar (1 unidade)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 16, item: 'Gorro leve (1 unidade)', categoria: 'Roupas', checked: false, essencial: false },
-  { id: 17, item: 'Roupa íntima (6 peças)', categoria: 'Roupas', checked: false, essencial: true },
-  { id: 18, item: 'Band-aid para bolhas', categoria: 'Medicamentos', checked: false, essencial: true },
-  { id: 19, item: 'Ibuprofeno', categoria: 'Medicamentos', checked: false, essencial: true },
-  { id: 20, item: 'Protetor solar FPS 50+', categoria: 'Medicamentos', checked: false, essencial: true },
-  { id: 21, item: 'Mochila 35-40L', categoria: 'Equipamentos', checked: false, essencial: true },
-  { id: 22, item: 'Capa Protetora de Chuva', categoria: 'Equipamentos', checked: false, essencial: true },
-  { id: 23, item: 'Bastão de caminhada', categoria: 'Equipamentos', checked: false, essencial: false },
-  { id: 24, item: 'Saco de dormir (se necessário)', categoria: 'Equipamentos', checked: false, essencial: false },
-  { id: 25, item: 'Garrafa de água 1L', categoria: 'Equipamentos', checked: false, essencial: true },
-  { id: 26, item: 'Adaptador de tomada europeu', categoria: 'Verificar em Portugal', checked: false, essencial: false },
-  { id: 27, item: 'Chip de celular local', categoria: 'Verificar em Portugal', checked: false, essencial: false },
-  { id: 28, item: 'Comida para trilha', categoria: 'Verificar em Portugal', checked: false, essencial: false },
-  { id: 29, item: 'Par de luvas leves', categoria: 'Roupas', checked: false, essencial: false },
-  { id: 30, item: 'Sabonete', categoria: 'Higiene Pessoal', checked: false, essencial: false },
-  { id: 31, item: 'Shampoo', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 32, item: 'Escova de dente', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 33, item: 'Creme Dental', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 34, item: 'Fio Dental', categoria: 'Higiene Pessoal', checked: false, essencial: false },
-  { id: 35, item: 'Desodorante pequeno', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 36, item: 'Protetor solar', categoria: 'Higiene Pessoal', checked: false, essencial: false },
-  { id: 37, item: 'Protetor labial', categoria: 'Higiene Pessoal', checked: false, essencial: false },
-  { id: 38, item: 'Papel higiênico ou lenço umedecido', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 39, item: 'Toalha de secagem rápida', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 40, item: 'Pente ou escova de cabelo', categoria: 'Higiene Pessoal', checked: false, essencial: false },
-  { id: 41, item: 'Hidratante para pés e corpo', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 42, item: 'Fone de ouvidos', categoria: 'Equipamentos', checked: false, essencial: false },
-  { id: 43, item: 'Power bank ou placa solar leve', categoria: 'Equipamentos', checked: false, essencial: false },
-  { id: 44, item: 'Fita adesiva esportiva ou esparadrapo', categoria: 'Higiene Pessoal', checked: false, essencial: false },
-  { id: 45, item: 'Repelente de insetos', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 46, item: 'Gel ou pomada para dores musculares', categoria: 'Higiene Pessoal', checked: false, essencial: true },
-  { id: 47, item: 'Sacos estanques ou ziploc', categoria: 'Outros', checked: false, essencial: false },
-  { id: 48, item: 'Corda ou elástico para pendurar roupas para secar', categoria: 'Outros', checked: false, essencial: false },
-  { id: 49, item: 'Grampos ou alfinetes para pendurar roupas na mochila', categoria: 'Outros', checked: false, essencial: false },
-  { id: 50, item: 'Tampão de ouvido para a noite', categoria: 'Outros', checked: false, essencial: false },
-  { id: 51, item: 'Máscara de dormir', categoria: 'Outros', checked: false, essencial: false },
-  { id: 52, item: 'Lanterna pequena ou headlamp', categoria: 'Equipamentos', checked: false, essencial: true },
-  { id: 53, item: 'Carregador de celular', categoria: 'Equipamentos', checked: false, essencial: true }
+  // ===================================================================================
+  // DOCUMENTOS E BUROCRACIA
+  // ===================================================================================
+  { id: 1, name: "Passaporte válido (mín. 6 meses)", category: "Documentos", checked: false },
+  { id: 2, name: "Passagem aérea ida e volta", category: "Documentos", checked: false },
+  { id: 3, name: "Seguro-viagem obrigatório (apólice em inglês/espanhol)", category: "Documentos", checked: false },
+  { id: 4, name: "Comprovante hospedagem inicial (Porto)", category: "Documentos", checked: false },
+  { id: 5, name: "Cartão de crédito internacional", category: "Documentos", checked: false },
+  { id: 6, name: "Euros em espécie (notas pequenas)", category: "Documentos", checked: false },
+  { id: 7, name: "Credencial do Peregrino", category: "Documentos", checked: false },
+  { id: 8, name: "Cartão Europeu de Vacinação", category: "Documentos", checked: false },
+  { id: 9, name: "Cópias dos documentos (físicas e digitais)", category: "Documentos", checked: false },
+  { id: 10, name: "Comprovante de renda/trabalho", category: "Documentos", checked: false },
+  { id: 11, name: "Contatos de emergência no Brasil", category: "Documentos", checked: false },
+  { id: 12, name: "Números de telefone úteis em Portugal/Espanha", category: "Documentos", checked: false },
+
+  // ===================================================================================
+  // VESTUÁRIO (PESO MÁXIMO 10% DO PESO CORPORAL)
+  // ===================================================================================
+  { id: 13, name: "2 camisetas dry fit (secagem rápida)", category: "Roupas", checked: false },
+  { id: 14, name: "2 calças leves de caminhada", category: "Roupas", checked: false },
+  { id: 15, name: "1 bermuda/shorts de caminhada", category: "Roupas", checked: false },
+  { id: 16, name: "2 mudas de roupa íntima", category: "Roupas", checked: false },
+  { id: 17, name: "2 pares de meias técnicas anti-bolha", category: "Roupas", checked: false },
+  { id: 18, name: "1 segunda pele/blusa manga longa", category: "Roupas", checked: false },
+  { id: 19, name: "1 corta-vento impermeável (jaqueta chuva)", category: "Roupas", checked: false },
+  { id: 20, name: "1 fleece ou casaco leve", category: "Roupas", checked: false },
+  { id: 21, name: "1 chapéu/boné com proteção UV", category: "Roupas", checked: false },
+  { id: 22, name: "1 roupa para dormir (leve)", category: "Roupas", checked: false },
+  { id: 23, name: "1 roupa para Santiago (chegada)", category: "Roupas", checked: false },
+  { id: 24, name: "1 toalha de secagem rápida", category: "Roupas", checked: false },
+  { id: 25, name: "Roupa íntima extra (emergência)", category: "Roupas", checked: false },
+  { id: 26, name: "Meias extras (3º par)", category: "Roupas", checked: false },
+
+  // ===================================================================================
+  // CALÇADOS
+  // ===================================================================================
+  { id: 27, name: "1 par botas/tênis trilha (já amaciados)", category: "Calçados", checked: false },
+  { id: 28, name: "1 par tênis leve/crocs (pós-caminhada)", category: "Calçados", checked: false },
+  { id: 29, name: "1 par chinelos/sandálias para albergue", category: "Calçados", checked: false },
+  { id: 30, name: "Palmilhas extras/ortopédicas", category: "Calçados", checked: false },
+  { id: 31, name: "Protetores de calcanhar", category: "Calçados", checked: false },
+
+  // ===================================================================================
+  // MOCHILA E EQUIPAMENTOS
+  // ===================================================================================
+  { id: 32, name: "Mochila 30-40L com capa de chuva", category: "Equipamentos", checked: false },
+  { id: 33, name: "Saco de dormir leve ou liner", category: "Equipamentos", checked: false },
+  { id: 34, name: "Bastões de caminhada (telescópicos)", category: "Equipamentos", checked: false },
+  { id: 35, name: "Garrafa/cantil (mín. 750ml)", category: "Equipamentos", checked: false },
+  { id: 36, name: "Cadeado pequeno para albergues", category: "Equipamentos", checked: false },
+  { id: 37, name: "Powerbank + cabo USB", category: "Equipamentos", checked: false },
+  { id: 38, name: "Adaptador europeu (tomada tipo C/F)", category: "Equipamentos", checked: false },
+  { id: 39, name: "Sacos organizadores/ziplock", category: "Equipamentos", checked: false },
+  { id: 40, name: "Óculos de sol com proteção UV", category: "Equipamentos", checked: false },
+  { id: 41, name: "Lanterna/headlamp", category: "Equipamentos", checked: false },
+  { id: 42, name: "Canivete multiuso pequeno", category: "Equipamentos", checked: false },
+  { id: 43, name: "Corda/cordão auxiliar", category: "Equipamentos", checked: false },
+  { id: 44, name: "Saco estanque para documentos", category: "Equipamentos", checked: false },
+
+  // ===================================================================================
+  // HIGIENE E SAÚDE
+  // ===================================================================================
+  { id: 45, name: "Escova e pasta de dente", category: "Higiene Pessoal", checked: false },
+  { id: 46, name: "Sabonete/shampoo (frasco pequeno)", category: "Higiene Pessoal", checked: false },
+  { id: 47, name: "Protetor solar FPS 50+", category: "Higiene Pessoal", checked: false },
+  { id: 48, name: "Protetor labial com FPS", category: "Higiene Pessoal", checked: false },
+  { id: 49, name: "Desodorante", category: "Higiene Pessoal", checked: false },
+  { id: 50, name: "Papel higiênico", category: "Higiene Pessoal", checked: false },
+  { id: 51, name: "Produtos femininos", category: "Higiene Pessoal", checked: false },
+  { id: 52, name: "Repelente de insetos", category: "Higiene Pessoal", checked: false },
+  { id: 53, name: "Hidratante corporal", category: "Higiene Pessoal", checked: false },
+  { id: 54, name: "Cortador de unhas", category: "Higiene Pessoal", checked: false },
+
+  // ===================================================================================
+  // KIT PRIMEIROS SOCORROS E MEDICAMENTOS
+  // ===================================================================================
+  { id: 55, name: "Band-aids variados", category: "Medicamentos", checked: false },
+  { id: 56, name: "Pomada para bolhas (Compeed)", category: "Medicamentos", checked: false },
+  { id: 57, name: "Esparadrapo/fita adesiva", category: "Medicamentos", checked: false },
+  { id: 58, name: "Analgésicos (paracetamol/ibuprofeno)", category: "Medicamentos", checked: false },
+  { id: 59, name: "Anti-inflamatórios", category: "Medicamentos", checked: false },
+  { id: 60, name: "Pomada para dor muscular", category: "Medicamentos", checked: false },
+  { id: 61, name: "Medicamentos pessoais", category: "Medicamentos", checked: false },
+  { id: 62, name: "Antialérgico", category: "Medicamentos", checked: false },
+  { id: 63, name: "Remédio para diarreia", category: "Medicamentos", checked: false },
+  { id: 64, name: "Soro fisiológico (sachês)", category: "Medicamentos", checked: false },
+  { id: 65, name: "Termômetro digital", category: "Medicamentos", checked: false },
+  { id: 66, name: "Gaze estéril", category: "Medicamentos", checked: false },
+  { id: 67, name: "Álcool gel", category: "Medicamentos", checked: false },
+
+  // ===================================================================================
+  // ALIMENTAÇÃO E HIDRATAÇÃO
+  // ===================================================================================
+  { id: 68, name: "Snacks energéticos (barras, nuts)", category: "Alimentação", checked: false },
+  { id: 69, name: "Isotônico em pó", category: "Alimentação", checked: false },
+  { id: 70, name: "Pastilhas purificadoras de água", category: "Alimentação", checked: false },
+  { id: 71, name: "Sal mineral/eletrólitos", category: "Alimentação", checked: false },
+  { id: 72, name: "Frutas secas", category: "Alimentação", checked: false },
+  { id: 73, name: "Chocolate/doces energéticos", category: "Alimentação", checked: false },
+
+  // ===================================================================================
+  // TECNOLOGIA E COMUNICAÇÃO
+  // ===================================================================================
+  { id: 74, name: "Smartphone com GPS", category: "Tecnologia", checked: false },
+  { id: 75, name: "App Caminho Santiago (offline)", category: "Tecnologia", checked: false },
+  { id: 76, name: "Chip internacional/roaming", category: "Tecnologia", checked: false },
+  { id: 77, name: "Câmera ou celular para fotos", category: "Tecnologia", checked: false },
+  { id: 78, name: "Fones de ouvido", category: "Tecnologia", checked: false },
+  { id: 79, name: "Carregador solar (opcional)", category: "Tecnologia", checked: false },
+
+  // ===================================================================================
+  // ITENS ESPIRITUAIS E PESSOAIS
+  // ===================================================================================
+  { id: 80, name: "Concha de Santiago", category: "Espiritual", checked: false },
+  { id: 81, name: "Caderno e caneta", category: "Espiritual", checked: false },
+  { id: 82, name: "Livro espiritual/guia do Caminho", category: "Espiritual", checked: false },
+  { id: 83, name: "Terço ou objeto de devoção", category: "Espiritual", checked: false },
+  { id: 84, name: "Pedra ou cristal pessoal", category: "Espiritual", checked: false },
+
+  // ===================================================================================
+  // VERIFICAÇÕES ANTES DA VIAGEM
+  // ===================================================================================
+  { id: 85, name: "Teste completo da mochila carregada", category: "Verificar Antes", checked: false },
+  { id: 86, name: "Caminhada teste com equipamentos", category: "Verificar Antes", checked: false },
+  { id: 87, name: "Amaciamento das botas (mín. 50km)", category: "Verificar Antes", checked: false },
+  { id: 88, name: "Reserva hospedagem primeiros dias", category: "Verificar Antes", checked: false },
+  { id: 89, name: "Seguro viagem ativado", category: "Verificar Antes", checked: false },
+  { id: 90, name: "Comunicar banco sobre viagem", category: "Verificar Antes", checked: false },
+  { id: 91, name: "Backup digital de documentos", category: "Verificar Antes", checked: false },
+  { id: 92, name: "Lista contatos emergência", category: "Verificar Antes", checked: false },
+
+  // ===================================================================================
+  // VERIFICAÇÕES EM PORTUGAL
+  // ===================================================================================
+  { id: 93, name: "Credencial carimbada no Porto", category: "Verificar em Portugal", checked: false },
+  { id: 94, name: "Mapa atualizado do Caminho", category: "Verificar em Portugal", checked: false },
+  { id: 95, name: "Informações de albergues atualizadas", category: "Verificar em Portugal", checked: false },
+  { id: 96, name: "Contatos emergência locais", category: "Verificar em Portugal", checked: false },
+  { id: 97, name: "Previsão do tempo atualizada", category: "Verificar em Portugal", checked: false },
+  { id: 98, name: "Comprar itens esquecidos", category: "Verificar em Portugal", checked: false },
+  { id: 99, name: "Testar equipamentos", category: "Verificar em Portugal", checked: false },
+
+  // ===================================================================================
+  // ITENS OPCIONAIS/EXTRAS
+  // ===================================================================================
+  { id: 100, name: "Roupão leve", category: "Outros", checked: false },
+  { id: 101, name: "Travesseiro inflável", category: "Outros", checked: false },
+  { id: 102, name: "Máscara para dormir", category: "Outros", checked: false },
+  { id: 103, name: "Protetor auricular", category: "Outros", checked: false },
+  { id: 104, name: "Vaselina (anti-atrito)", category: "Outros", checked: false },
+  { id: 105, name: "Elásticos/presilhas", category: "Outros", checked: false },
+  { id: 106, name: "Saco para roupa suja", category: "Outros", checked: false },
+  { id: 107, name: "Detergente líquido pequeno", category: "Outros", checked: false },
+  { id: 108, name: "Pregadores de roupa", category: "Outros", checked: false },
+  { id: 109, name: "Agulha e linha", category: "Outros", checked: false },
+  { id: 110, name: "Fita isolante", category: "Outros", checked: false }
 ];
 
 // Reflexões espirituais completas
@@ -674,7 +778,7 @@ const SantiagoAssistant = () => {
   const [carregandoIndicacoes, setCarregandoIndicacoes] = useState(false);
   const [filtroTipo, setFiltroTipo] = useState('Todos');
 
-  const categorias = ['Documentos', 'Roupas', 'Calçados', 'Medicamentos', 'Equipamentos', 'Higiene Pessoal', 'Verificar em Portugal', 'Outros'];
+  const categorias = ['Documentos', 'Roupas', 'Calçados', 'Equipamentos', 'Higiene Pessoal', 'Medicamentos', 'Alimentação', 'Tecnologia', 'Espiritual', 'Verificar Antes', 'Verificar em Portugal', 'Outros'];
   const tiposIndicacao = ['Documentos', 'Roupas', 'Calçados', 'Medicamentos', 'Equipamentos', 'Higiene Pessoal', 'Verificar em Portugal', 'Outros', 'Filme', 'Vídeo', 'Série', 'Livro', 'Artigo', 'Documentário', 'Podcast'];
 
   // Salvar no localStorage sempre que o checklist mudar
@@ -682,73 +786,27 @@ const SantiagoAssistant = () => {
     localStorage.setItem('santiago-checklist', JSON.stringify(checklist));
   }, [checklist]);
 
-  // Carregar indicações da API
+  // Carregar indicações do localStorage
   useEffect(() => {
-    const fetchIndicacoes = async () => {
-      try {
-        setCarregandoIndicacoes(true);
-        const response = await fetch('/api/indicacoes');
-        if (response.ok) {
-          const data = await response.json();
-          setIndicacoes(data);
-        } else {
-          console.error('Erro ao carregar indicações:', response.statusText);
-          // Fallback para localStorage se API falhar
-          const savedIndicacoes = localStorage.getItem('santiago-indicacoes');
-          if (savedIndicacoes) {
-            setIndicacoes(JSON.parse(savedIndicacoes));
-          }
-        }
-      } catch (error) {
-        console.error('Erro ao conectar com API:', error);
-        // Fallback para localStorage se API falhar
-        const savedIndicacoes = localStorage.getItem('santiago-indicacoes');
-        if (savedIndicacoes) {
-          setIndicacoes(JSON.parse(savedIndicacoes));
-        }
-      } finally {
-        setCarregandoIndicacoes(false);
-      }
-    };
-
-    fetchIndicacoes();
+    const savedIndicacoes = localStorage.getItem('santiago-indicacoes');
+    if (savedIndicacoes) {
+      setIndicacoes(JSON.parse(savedIndicacoes));
+    }
+    setCarregandoIndicacoes(false);
   }, []);
 
-  // Salvar indicações via API
-  const salvarIndicacoes = async (novaIndicacao) => {
-    try {
-      const response = await fetch('/api/indicacoes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(novaIndicacao),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setIndicacoes(data);
-        // Backup no localStorage
-        localStorage.setItem('santiago-indicacoes', JSON.stringify(data));
-        return true;
-      } else {
-        console.error('Erro ao salvar indicação:', response.statusText);
-        return false;
-      }
-    } catch (error) {
-      console.error('Erro ao conectar com API:', error);
-      // Fallback para localStorage
-      const novaIndicacaoCompleta = {
-        id: Date.now(),
-        ...novaIndicacao,
-        dataAdicionada: new Date().toLocaleDateString('pt-BR'),
-        autor: novaIndicacao.autor || 'Anônimo'
-      };
-      const novasIndicacoes = [...indicacoes, novaIndicacaoCompleta];
-      setIndicacoes(novasIndicacoes);
-      localStorage.setItem('santiago-indicacoes', JSON.stringify(novasIndicacoes));
-      return true;
-    }
+  // Salvar indicações no localStorage
+  const salvarIndicacoes = (novaIndicacao) => {
+    const novaIndicacaoCompleta = {
+      id: Date.now(),
+      ...novaIndicacao,
+      dataAdicionada: new Date().toLocaleDateString('pt-BR'),
+      autor: novaIndicacao.autor || 'Anônimo'
+    };
+    const novasIndicacoes = [...indicacoes, novaIndicacaoCompleta];
+    setIndicacoes(novasIndicacoes);
+    localStorage.setItem('santiago-indicacoes', JSON.stringify(novasIndicacoes));
+    return true;
   };
 
   // Funções utilitárias
@@ -769,10 +827,9 @@ const SantiagoAssistant = () => {
     if (customItem.trim()) {
       const newItem = {
         id: Date.now(),
-        item: customItem.trim(),
-        categoria: customCategory,
-        checked: false,
-        essencial: false
+        name: customItem.trim(),
+        category: customCategory,
+        checked: false
       };
       setChecklist([...checklist, newItem]);
       setCustomItem('');
@@ -895,9 +952,8 @@ const SantiagoAssistant = () => {
   const exportToExcel = () => {
     // Criar dados para o Excel
     const excelData = checklist.map(item => ({
-      'Item': item.item,
-      'Categoria': item.categoria,
-      'Essencial': item.essencial ? 'Sim' : 'Não',
+      'Item': item.name,
+      'Categoria': item.category,
       'Concluído': item.checked ? 'Sim' : 'Não',
       'Status': item.checked ? '✅' : '⏳'
     }));
@@ -905,16 +961,11 @@ const SantiagoAssistant = () => {
     // Criar estatísticas
     const totalItems = checklist.length;
     const completedItems = checklist.filter(item => item.checked).length;
-    const essentialItems = checklist.filter(item => item.essencial).length;
-    const completedEssential = checklist.filter(item => item.essencial && item.checked).length;
 
     const statsData = [
       { 'Estatística': 'Total de Itens', 'Valor': totalItems },
       { 'Estatística': 'Itens Concluídos', 'Valor': completedItems },
-      { 'Estatística': 'Progresso Geral', 'Valor': `${Math.round((completedItems / totalItems) * 100)}%` },
-      { 'Estatística': 'Itens Essenciais', 'Valor': essentialItems },
-      { 'Estatística': 'Essenciais Concluídos', 'Valor': completedEssential },
-      { 'Estatística': 'Progresso Essenciais', 'Valor': `${Math.round((completedEssential / essentialItems) * 100)}%` }
+      { 'Estatística': 'Progresso Geral', 'Valor': `${Math.round((completedItems / totalItems) * 100)}%` }
     ];
 
     // Criar conteúdo CSV
@@ -929,8 +980,8 @@ const SantiagoAssistant = () => {
       // Cabeçalho dos itens
       'LISTA COMPLETA DE ITENS',
       '',
-      'Item,Categoria,Essencial,Concluído,Status',
-      ...excelData.map(row => `"${row.Item}",${row.Categoria},${row.Essencial},${row.Concluído},${row.Status}`)
+      'Item,Categoria,Concluído,Status',
+      ...excelData.map(row => `"${row.Item}",${row.Categoria},${row.Concluído},${row.Status}`)
     ].join('\n');
 
     // Criar e baixar arquivo
@@ -1206,14 +1257,12 @@ const SantiagoAssistant = () => {
 
   const renderListaItens = () => {
     const groupedItems = categorias.reduce((acc, categoria) => {
-      acc[categoria] = checklist.filter(item => item.categoria === categoria);
+      acc[categoria] = checklist.filter(item => item.category === categoria);
       return acc;
     }, {});
 
     const totalItems = checklist.length;
     const completedItems = checklist.filter(item => item.checked).length;
-    const essentialItems = checklist.filter(item => item.essencial).length;
-    const completedEssential = checklist.filter(item => item.essencial && item.checked).length;
 
     return (
       <div className="space-y-6">
@@ -1223,10 +1272,10 @@ const SantiagoAssistant = () => {
               <div>
                 <CardTitle className="flex items-center gap-2">
                   <Package className="h-5 w-5" />
-                  Lista Personalizada - 7 Peregrinos
+                  Lista Completa - Caminho de Santiago
                 </CardTitle>
                 <CardDescription>
-                  Marque os itens conforme forem sendo preparados. Itens essenciais estão marcados com ⭐
+                  Lista expandida com 110 itens organizados em 12 categorias para uma preparação completa
                 </CardDescription>
               </div>
               <div className="flex gap-2">
@@ -1249,7 +1298,7 @@ const SantiagoAssistant = () => {
             <CardTitle className="text-blue-800">📊 Estatísticas do Progresso</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="text-center p-3 bg-white rounded-lg shadow-sm">
                 <p className="text-2xl font-bold text-blue-600">{completedItems}</p>
                 <p className="text-sm text-blue-800">de {totalItems} itens</p>
@@ -1261,14 +1310,9 @@ const SantiagoAssistant = () => {
                 <p className="text-xs text-gray-600">Total</p>
               </div>
               <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                <p className="text-2xl font-bold text-orange-600">{completedEssential}</p>
-                <p className="text-sm text-orange-800">de {essentialItems} essenciais</p>
-                <p className="text-xs text-gray-600">Itens Críticos</p>
-              </div>
-              <div className="text-center p-3 bg-white rounded-lg shadow-sm">
-                <p className="text-2xl font-bold text-purple-600">{Math.round((completedEssential / essentialItems) * 100)}%</p>
-                <p className="text-sm text-purple-800">Essenciais OK</p>
-                <p className="text-xs text-gray-600">Prioridade</p>
+                <p className="text-2xl font-bold text-purple-600">{totalItems - completedItems}</p>
+                <p className="text-sm text-purple-800">Restantes</p>
+                <p className="text-xs text-gray-600">A Fazer</p>
               </div>
             </div>
             <div className="mt-4">
@@ -1316,10 +1360,10 @@ const SantiagoAssistant = () => {
                         {item.checked && <Check size={12} />}
                       </Button>
                       <span className={`${item.checked ? 'line-through text-gray-500' : 'text-gray-800'}`}>
-                        {item.essencial && '⭐'} {item.item}
+                        {item.name}
                       </span>
                     </div>
-                    {!item.essencial && (
+                    {item.id > 1000 && (
                       <Button
                         variant="ghost"
                         size="sm"
