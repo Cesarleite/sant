@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Clock, Package, Hotel, Plus, Trash2, Check, Navigation, Calendar, Heart, BookOpen, Mountain, Compass, Phone, Map, Download } from 'lucide-react';
+import { MapPin, Clock, Package, Hotel, Plus, Trash2, Check, Navigation, Calendar, Heart, BookOpen, Mountain, Compass, Phone, Map, Download, Star, ExternalLink, Film, Video, Tv, Book, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx';
@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge.jsx';
 import { Input } from '@/components/ui/input.jsx';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.jsx';
 import { Progress } from '@/components/ui/progress.jsx';
+import { Textarea } from '@/components/ui/textarea.jsx';
 import './App.css';
 import './index.css';
 
@@ -59,7 +60,7 @@ const roteiroCompleto = [
     titulo: "Vairão a Barcelos",
     pontoPartida: "A Casa da Estrela (Vairão)",
     pontoChegada: "Bagoeira Hotel Restaurante (Barcelos)",
-    distancia: 26.6,
+    distancia: 32,
     tempoEstimado: "8-9 horas",
     dificuldade: "Difícil",
     clima: "14°C - 25°C",
@@ -97,7 +98,7 @@ const roteiroCompleto = [
     titulo: "Barcelos a Vitorino dos Piães",
     pontoPartida: "Bagoeira Hotel Restaurante (Barcelos)",
     pontoChegada: "Casa dos Barros (Vitorino dos Piães)",
-    distancia: 16,
+    distancia: 23,
     tempoEstimado: "5-6 horas",
     dificuldade: "Moderada",
     clima: "14°C - 24°C",
@@ -135,7 +136,7 @@ const roteiroCompleto = [
     titulo: "Vitorino dos Piães a Ponte de Lima",
     pontoPartida: "Casa dos Barros (Vitorino dos Piães)",
     pontoChegada: "Pousada de Juventude de Ponte de Lima",
-    distancia: 17,
+    distancia: 12,
     tempoEstimado: "2.5-3.5 horas",
     dificuldade: "Fácil",
     clima: "14°C - 24°C",
@@ -173,7 +174,7 @@ const roteiroCompleto = [
     titulo: "Ponte de Lima a Rubiães",
     pontoPartida: "Pousada de Juventude de Ponte de Lima",
     pontoChegada: "Repouso do Peregrino (Rubiães)",
-    distancia: 17,
+    distancia: 18.5,
     tempoEstimado: "4.5-6 horas",
     dificuldade: "Difícil",
     clima: "14°C - 24°C",
@@ -660,12 +661,95 @@ const SantiagoAssistant = () => {
   const [customItem, setCustomItem] = useState('');
   const [customCategory, setCustomCategory] = useState('Outros');
 
+  // Estados para a aba de indicações
+  const [indicacoes, setIndicacoes] = useState([]);
+  const [novaIndicacao, setNovaIndicacao] = useState({ 
+    titulo: '', 
+    tipo: 'Outros', 
+    autor: '', 
+    link: '', 
+    descricao: '',
+    avaliacao: 5
+  });
+  const [carregandoIndicacoes, setCarregandoIndicacoes] = useState(false);
+  const [filtroTipo, setFiltroTipo] = useState('Todos');
+
   const categorias = ['Documentos', 'Roupas', 'Calçados', 'Medicamentos', 'Equipamentos', 'Higiene Pessoal', 'Verificar em Portugal', 'Outros'];
+  const tiposIndicacao = ['Documentos', 'Roupas', 'Calçados', 'Medicamentos', 'Equipamentos', 'Higiene Pessoal', 'Verificar em Portugal', 'Outros', 'Filme', 'Vídeo', 'Série', 'Livro', 'Artigo', 'Documentário', 'Podcast'];
 
   // Salvar no localStorage sempre que o checklist mudar
   useEffect(() => {
     localStorage.setItem('santiago-checklist', JSON.stringify(checklist));
   }, [checklist]);
+
+  // Carregar indicações da API
+  useEffect(() => {
+    const fetchIndicacoes = async () => {
+      try {
+        setCarregandoIndicacoes(true);
+        const response = await fetch('/api/indicacoes');
+        if (response.ok) {
+          const data = await response.json();
+          setIndicacoes(data);
+        } else {
+          console.error('Erro ao carregar indicações:', response.statusText);
+          // Fallback para localStorage se API falhar
+          const savedIndicacoes = localStorage.getItem('santiago-indicacoes');
+          if (savedIndicacoes) {
+            setIndicacoes(JSON.parse(savedIndicacoes));
+          }
+        }
+      } catch (error) {
+        console.error('Erro ao conectar com API:', error);
+        // Fallback para localStorage se API falhar
+        const savedIndicacoes = localStorage.getItem('santiago-indicacoes');
+        if (savedIndicacoes) {
+          setIndicacoes(JSON.parse(savedIndicacoes));
+        }
+      } finally {
+        setCarregandoIndicacoes(false);
+      }
+    };
+
+    fetchIndicacoes();
+  }, []);
+
+  // Salvar indicações via API
+  const salvarIndicacoes = async (novaIndicacao) => {
+    try {
+      const response = await fetch('/api/indicacoes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(novaIndicacao),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setIndicacoes(data);
+        // Backup no localStorage
+        localStorage.setItem('santiago-indicacoes', JSON.stringify(data));
+        return true;
+      } else {
+        console.error('Erro ao salvar indicação:', response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Erro ao conectar com API:', error);
+      // Fallback para localStorage
+      const novaIndicacaoCompleta = {
+        id: Date.now(),
+        ...novaIndicacao,
+        dataAdicionada: new Date().toLocaleDateString('pt-BR'),
+        autor: novaIndicacao.autor || 'Anônimo'
+      };
+      const novasIndicacoes = [...indicacoes, novaIndicacaoCompleta];
+      setIndicacoes(novasIndicacoes);
+      localStorage.setItem('santiago-indicacoes', JSON.stringify(novasIndicacoes));
+      return true;
+    }
+  };
 
   // Funções utilitárias
   const calculateTimeToNext = (distance) => {
@@ -704,6 +788,108 @@ const SantiagoAssistant = () => {
       item.id === id ? { ...item, checked: !item.checked } : item
     ));
   };
+
+  // ===================================================================================
+  // FUNÇÕES PARA GERENCIAR INDICAÇÕES
+  // ===================================================================================
+
+  // Função para adicionar nova indicação
+  const handleAddIndicacao = async () => {
+    if (novaIndicacao.titulo.trim()) {
+      const sucesso = await salvarIndicacoes(novaIndicacao);
+      
+      if (sucesso) {
+        // Limpar formulário
+        setNovaIndicacao({ 
+          titulo: '', 
+          tipo: '', 
+          autor: '', 
+          link: '', 
+          descricao: '',
+          avaliacao: 5
+        });
+      } else {
+        alert('Erro ao salvar indicação. Tente novamente.');
+      }
+    }
+  };
+
+  // Função para remover indicação
+  const handleRemoveIndicacao = async (id) => {
+    try {
+      const response = await fetch(`/api/indicacoes?id=${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setIndicacoes(data);
+        // Backup no localStorage
+        localStorage.setItem('santiago-indicacoes', JSON.stringify(data));
+      } else {
+        console.error('Erro ao remover indicação:', response.statusText);
+        // Fallback para localStorage
+        const novasIndicacoes = indicacoes.filter(indicacao => indicacao.id !== id);
+        setIndicacoes(novasIndicacoes);
+        localStorage.setItem('santiago-indicacoes', JSON.stringify(novasIndicacoes));
+      }
+    } catch (error) {
+      console.error('Erro ao conectar com API:', error);
+      // Fallback para localStorage
+      const novasIndicacoes = indicacoes.filter(indicacao => indicacao.id !== id);
+      setIndicacoes(novasIndicacoes);
+      localStorage.setItem('santiago-indicacoes', JSON.stringify(novasIndicacoes));
+    }
+  };
+
+  // Função para obter ícone do tipo
+  const getIconeTipo = (tipo) => {
+    switch (tipo) {
+      case 'Documentos': return <Film className="h-4 w-4" />;
+      case 'Roupas': return <Film className="h-4 w-4" />;
+      case 'Calçados': return <Film className="h-4 w-4" />;
+      case 'Medicamentos': return <Film className="h-4 w-4" />;
+      case 'Equipamentos': return <Film className="h-4 w-4" />;
+      case 'Higiene Pessoal': return <Film className="h-4 w-4" />;
+      case 'Verificar em Portugal': return <Film className="h-4 w-4" />;
+      case 'Outros': return <Film className="h-4 w-4" />;
+      case 'Filme': return <Film className="h-4 w-4" />;
+      case 'Vídeo': return <Video className="h-4 w-4" />;
+      case 'Série': return <Tv className="h-4 w-4" />;
+      case 'Livro': return <Book className="h-4 w-4" />;
+      case 'Artigo': return <FileText className="h-4 w-4" />;
+      case 'Documentário': return <Film className="h-4 w-4" />;
+      case 'Podcast': return <Video className="h-4 w-4" />;
+      default: return <BookOpen className="h-4 w-4" />;
+    }
+  };
+
+  // Função para obter cor do tipo
+  const getCorTipo = (tipo) => {
+    switch (tipo) {      
+      case 'Documentos': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Roupas': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Calçados': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Medicamentos': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Equipamentos': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Higiene Pessoal': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Verificar em Portugal': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Outros': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Filme': return 'bg-red-100 text-red-800 border-red-200';
+      case 'Vídeo': return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'Série': return 'bg-purple-100 text-purple-800 border-purple-200';
+      case 'Livro': return 'bg-green-100 text-green-800 border-green-200';
+      case 'Artigo': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      case 'Documentário': return 'bg-orange-100 text-orange-800 border-orange-200';
+      case 'Podcast': return 'bg-pink-100 text-pink-800 border-pink-200';
+      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+    }
+  };
+
+  // Filtrar indicações por tipo
+  const indicacoesFiltradas = filtroTipo === 'Todos' 
+    ? indicacoes 
+    : indicacoes.filter(indicacao => indicacao.tipo === filtroTipo);
 
   // Função para exportar para Excel
   const exportToExcel = () => {
@@ -1364,6 +1550,212 @@ const SantiagoAssistant = () => {
     </div>
   );
 
+  const renderIndicacoes = () => (
+    <div className="space-y-6">
+      {/* Card para adicionar nova indicação */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Plus className="h-5 w-5" />
+            Adicionar Nova Indicação
+          </CardTitle>
+          <CardDescription>
+            Compartilhe links de produtos, filmes, livros, vídeos e outros conteúdos relacionados ao Caminho de Santiago.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">Título *</label>
+              <Input
+                placeholder="Nome do Item..."
+                value={novaIndicacao.titulo}
+                onChange={(e) => setNovaIndicacao({...novaIndicacao, titulo: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Tipo *</label>
+              <Select 
+                value={novaIndicacao.tipo} 
+                onValueChange={(value) => setNovaIndicacao({...novaIndicacao, tipo: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {tiposIndicacao.map(tipo => (
+                    <SelectItem key={tipo} value={tipo}>{tipo}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">Autor/Diretor</label>
+              <Input
+                placeholder="Nome do autor, diretor..."
+                value={novaIndicacao.autor}
+                onChange={(e) => setNovaIndicacao({...novaIndicacao, autor: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Link (opcional)</label>
+              <Input
+                placeholder="https://..."
+                value={novaIndicacao.link}
+                onChange={(e) => setNovaIndicacao({...novaIndicacao, link: e.target.value})}
+              />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2">Descrição</label>
+            <Textarea
+              placeholder="Por que você recomenda este conteúdo? Como ele se relaciona com o Caminho?"
+              value={novaIndicacao.descricao}
+              onChange={(e) => setNovaIndicacao({...novaIndicacao, descricao: e.target.value})}
+              rows={3}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2">Avaliação</label>
+            <Select 
+              value={String(novaIndicacao.avaliacao)} 
+              onValueChange={(value) => setNovaIndicacao({...novaIndicacao, avaliacao: Number(value)})}
+            >
+              <SelectTrigger className="w-32">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5">⭐⭐⭐⭐⭐ (5)</SelectItem>
+                <SelectItem value="4">⭐⭐⭐⭐ (4)</SelectItem>
+                <SelectItem value="3">⭐⭐⭐ (3)</SelectItem>
+                <SelectItem value="2">⭐⭐ (2)</SelectItem>
+                <SelectItem value="1">⭐ (1)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Button onClick={handleAddIndicacao} className="w-full md:w-auto">
+            <Plus className="h-4 w-4 mr-2" />
+            Adicionar Indicação
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Card para listar indicações */}
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5" />
+                Indicações da Comunidade ({indicacoesFiltradas.length})
+              </CardTitle>
+              <CardDescription>
+                Conteúdos recomendados por peregrinos para enriquecer sua jornada.
+              </CardDescription>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Filtrar por tipo:</label>
+              <Select value={filtroTipo} onValueChange={setFiltroTipo}>
+                <SelectTrigger className="w-40">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Todos">Todos</SelectItem>
+                  {tiposIndicacao.map(tipo => (
+                    <SelectItem key={tipo} value={tipo}>{tipo}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {carregandoIndicacoes ? (
+            <div className="text-center py-8">
+              <p className="text-gray-500">Carregando indicações...</p>
+            </div>
+          ) : indicacoesFiltradas.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {indicacoesFiltradas.map((indicacao) => (
+                <Card key={indicacao.id} className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge className={`${getCorTipo(indicacao.tipo)} border flex items-center gap-1`}>
+                            {getIconeTipo(indicacao.tipo)}
+                            {indicacao.tipo}
+                          </Badge>
+                          <div className="flex">
+                            {[...Array(indicacao.avaliacao)].map((_, i) => (
+                              <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                            ))}
+                          </div>
+                        </div>
+                        <CardTitle className="text-lg leading-tight">{indicacao.titulo}</CardTitle>
+                        {indicacao.autor && (
+                          <CardDescription className="text-sm">por {indicacao.autor}</CardDescription>
+                        )}
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleRemoveIndicacao(indicacao.id)}
+                        className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    {indicacao.descricao && (
+                      <p className="text-sm text-gray-600 mb-3 line-clamp-3">
+                        {indicacao.descricao}
+                      </p>
+                    )}
+                    <div className="flex items-center justify-between text-xs text-gray-500">
+                      <span>Adicionado em {indicacao.dataAdicionada}</span>
+                      {indicacao.link && (
+                        <a
+                          href={indicacao.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          Ver
+                        </a>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+              <p className="text-gray-500 mb-2">
+                {filtroTipo === 'Todos' 
+                  ? 'Ainda não há indicações.' 
+                  : `Nenhuma indicação do tipo "${filtroTipo}" encontrada.`
+                }
+              </p>
+              <p className="text-sm text-gray-400">
+                Seja o primeiro a compartilhar uma recomendação!
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+
   // ===================================================================================
   // RENDERIZAÇÃO PRINCIPAL
   // ===================================================================================
@@ -1386,7 +1778,7 @@ const SantiagoAssistant = () => {
 
         <Tabs value={currentTab} onValueChange={setCurrentTab} className="w-full">
           <div className="flex justify-center mb-6">
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 h-auto bg-white/80 backdrop-blur-sm border shadow-lg rounded-xl p-1">
+            <TabsList className="grid grid-cols-2 md:grid-cols-5 h-auto bg-white/80 backdrop-blur-sm border shadow-lg rounded-xl p-1">
               <TabsTrigger 
                 value="roteiro" 
                 className="flex items-center gap-2 text-xs md:text-sm px-2 md:px-4 py-2 rounded-lg data-[state=active]:bg-blue-500 data-[state=active]:text-white transition-all duration-200"
@@ -1409,6 +1801,13 @@ const SantiagoAssistant = () => {
                 <span className="hidden sm:inline">Espiritual</span>
               </TabsTrigger>
               <TabsTrigger 
+                value="indicacoes" 
+                className="flex items-center gap-2 text-xs md:text-sm px-2 md:px-4 py-2 rounded-lg data-[state=active]:bg-indigo-500 data-[state=active]:text-white transition-all duration-200"
+              >
+                <BookOpen size={16} />
+                <span className="hidden sm:inline">Indicações</span>
+              </TabsTrigger>
+              <TabsTrigger 
                 value="reservas" 
                 className="flex items-center gap-2 text-xs md:text-sm px-2 md:px-4 py-2 rounded-lg data-[state=active]:bg-rose-500 data-[state=active]:text-white transition-all duration-200"
               >
@@ -1429,6 +1828,10 @@ const SantiagoAssistant = () => {
 
             <TabsContent value="espiritual" className="mt-6">
               {renderJornadaEspiritual()}
+            </TabsContent>
+
+            <TabsContent value="indicacoes" className="mt-6">
+              {renderIndicacoes()}
             </TabsContent>
 
             <TabsContent value="reservas" className="mt-6">
